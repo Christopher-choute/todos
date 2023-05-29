@@ -26,7 +26,10 @@ function App() {
   }
 
   return (
-    <div>
+    <div className= "center">
+    <div className="wave"></div>
+    <div className="wave"></div>
+    <div className="wave"></div>
       <h1>To do List For the Day</h1>
       <input type = "text" value = {input} onChange ={(e) => setInput(e.target.value)}/>
       <button onClick={() => addTodo(input)}>Add</button>
