@@ -25,19 +25,37 @@ function App() {
     setList(newList)
   }
 
+  const toggleComplete = (id) => {
+    const updatedList = list.map((todo) => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          completed: !todo.completed, // Toggle the completed property
+        };
+      }
+      return todo;
+    });
+  
+    setList(updatedList);
+  };
+  
+
   return (
     <div className= "center">
     <div className="wave"></div>
     <div className="wave"></div>
     <div className="wave"></div>
-      <h1>To do List For the Day</h1>
-      <input type = "text" value = {input} onChange ={(e) => setInput(e.target.value)}/>
-      <button onClick={() => addTodo(input)}>Add</button>
-      <ul>
+      <h1 className='header'>To do List For the Day</h1>
+      <input className='input' type = "text" value = {input} onChange ={(e) => setInput(e.target.value)}/>
+      <button className='add' onClick={() => addTodo(input)}>Add</button>
+      <ul className='list'>
         {list.map((todo) =>(
           <li key = {todo.id}>
+            <span className={todo.completed ? "completed" : ""}
+            onClick={() => toggleComplete(todo.id)}>
             {todo.todo}
-            <button onClick={() => deleteTodo(todo.id)}>&times;</button>
+      </span>
+            <button className='erase' onClick={() => deleteTodo(todo.id)}>&times;</button>
           </li>
         ))}
       </ul>
