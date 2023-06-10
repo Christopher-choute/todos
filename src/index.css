@@ -10,6 +10,7 @@ body {
   animation: gradient 15s ease infinite;
   background-size: 400% 400%;
   background-attachment: fixed;
+  display: flex;
 }
 
 @keyframes gradient {
@@ -86,8 +87,10 @@ body {
   padding: 10px;
   background:rgba(255, 255, 255, 0.157);
   width: 500px;
-  height: 300px;
+  height: auto;
   border-radius: 25px;
+  
+
   /* opacity: 0.1; */
 }
 
@@ -151,7 +154,9 @@ body {
 }
 
 .erase{
-  margin-left: 350px;
+  /* margin-left: 350px; */
+  position: absolute;
+  right: 10px;
   background:rgba(255, 255, 255, 0.157);
   border: 5px;
   border-radius: 25px;

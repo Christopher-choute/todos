@@ -1,16 +1,39 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
-function App() {
 
-  const [list, setList] = useState([]);
-  const [input, setInput] = useState("");
+  function App() {
+    const [list, setList] = useState(() => {
+      const storedList = localStorage.getItem('todoList');
+      return storedList ? JSON.parse(storedList) : [];
+    });
+    const [input, setInput] = useState('');
+  
+
+  useEffect(() => {
+    const storedList = localStorage.getItem('todoList');
+    if (storedList) {
+      setList(JSON.parse(storedList));
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log('Updating local storage:', list);
+    localStorage.setItem('todoList', JSON.stringify(list));
+  }, [list]);
+
+ 
 
   const addTodo = (todo) => {
+    if (!todo.trim()) {
+      return; // Do not add empty tasks
+    }
+
     const newTodo = {
       id: Math.random(),
       todo: todo,
+      completed: false
     }
-    
+
     // adding stuff to the list
     setList([...list, newTodo]);
     
